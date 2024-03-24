@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { connectDB } from "@/util/database";
 import { Button, Row, Col } from "react-bootstrap";
 
+let result_text = {};
+
 export default async function Search(props) {
   const db = (await connectDB).db("forum");
   let keyword = await db
@@ -29,11 +31,15 @@ export default async function Search(props) {
 
   try {
     const response = await fetch(url, options);
-    const result = await response.text();
+    const result = await response.json();
     console.log(result);
+    console.log(typeof result);
+    result_text = result;
   } catch (error) {
     console.error(error);
   }
+  console.log("r", result_text);
+
   return (
     <div style={{ border: "1px solid black" }}>
       <h1 style={{ marginTop: "100px", textAlign: "center" }}>Search Result</h1>
@@ -53,7 +59,9 @@ export default async function Search(props) {
         <Col>
           <div className="search-card">
             <h4>{keyword.Verlan}</h4>
-            <p>Original:{keyword.Original}</p>
+            {result_text.alternative_texts.map((a, i) => (
+              <p key={i}>Original: {a}</p>
+            ))}
           </div>
         </Col>
       </Row>

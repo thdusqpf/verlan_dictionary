@@ -13,7 +13,7 @@ export default function NavBar() {
         <Nav className="me-auto">
           <Nav.Link>Home</Nav.Link>
           <Nav.Link href="#features">My Note</Nav.Link>
-          <Nav.Link href="#pricing">About</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
