@@ -301,7 +301,7 @@ a {
 }
 .wordcloud3 {
   width: 50px;
-  color: rgba(75, 75, 75);
+  color: rgb(75, 75, 75);
   position: absolute;
   top: 12px;
   left: 55px;
@@ -337,7 +337,7 @@ a {
 }
 .wordcloud6 {
   width: 50px;
-  color: rgba(120, 120, 120);
+  color: rgb(120, 120, 120);
   position: absolute;
   top: 12px;
   left: 55px;
@@ -349,7 +349,7 @@ a {
 }
 .wordcloud7 {
   width: 50px;
-  color: rgba(135, 135, 135);
+  color: rgb(135, 135, 135);
   position: absolute;
   top: 12px;
   left: 55px;
@@ -361,7 +361,7 @@ a {
 }
 .wordcloud8 {
   width: 50px;
-  color: rgba(150, 150, 150);
+  color: rgb(150, 150, 150);
   position: absolute;
   top: 12px;
   left: 55px;
@@ -373,7 +373,7 @@ a {
 }
 .wordcloud9 {
   width: 50px;
-  color: rgba(165, 165, 165);
+  color: rgb(165, 165, 165);
   position: absolute;
   top: 12px;
   left: 55px;
