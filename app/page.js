@@ -13,13 +13,15 @@ export default async function Home() {
 }
 
 function WordCloud() {
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
   return (
     <Row className="wcloud-bg">
       <Col>
         <h2 style={{ marginTop: "60px" }}>Word Cloud</h2>
           <div class="ligne">
               <div class="intro primaire">
-                  <h2>Verlan les plus fr&eacute;quents</h2>
+               <h2>Verlan les plus fr&eacute;quents</h2>
                   <p>
                       <a title="verlan Cimer" href="/conjugaison/verbe/acheter.html" class="t18">cimer</a>
                       <a title="verlan chelou" href="/conjugaison/verbe/acheter.html" class="t18">chelou</a>
