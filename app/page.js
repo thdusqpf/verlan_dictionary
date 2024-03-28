@@ -1,52 +1,170 @@
+import React from "react";
+import SearchBar from "./SearchBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Row, Col, Button } from "react-bootstrap";
-import SearchArea from "./SearchArea";
+import { Row, Col, Button, Container } from "react-bootstrap";
 
-export default async function Home() {
+// Header Component
+const Header = () => {
   return (
-    <>
-      <h1 style={{ textAlign: "center", marginTop: "150" }}>Search</h1>
-      <SearchArea />
-      <WordCloud />
-    </>
+    <header>
+      <h1>Verlan Dictionary</h1>
+      <div className="skyline">
+        <img src="/verlan_background.png" className="background-img" />
+      </div>
+      <SearchBar />
+    </header>
   );
-}
+};
 
-function WordCloud() {
+// InverseVerlan Component
+const InverseVerlan = () => {
   return (
-    <Row className="wcloud-bg">
-      <Col>
-        <h2 style={{ marginTop: "60px" }}>Word Cloud</h2>
-          <div class="ligne">
-              <div class="intro primaire">
-                <div class="chart-area">
-                  <div id="container" style="width:100%; height:100%;"></div>
-                </div>
-               
-                <h2>Verlan les plus fr&eacute;quents</h2>
-                  <div className="wordcloud_section">
-                    <span className="wordcloud_name"> Word Cloud </span>
-                      <p>
-                          <a title="verlan Cimer" href="/conjugaison/verbe/acheter.html" class="wordcloud1">cimer</a>
-                          <a title="verlan chelou" href="/conjugaison/verbe/acheter.html" class="wordcloud2">chelou</a>
-                          <a title="verlan ouf" href="/conjugaison/verbe/acheter.html" class="wordcloud3">ouf</a>
-                          <a title="verlan zarbi" href="/conjugaison/verbe/acheter.html" class="wordcloud4">zarbi</a>
-                          <a title="verlan keufs" href="/conjugaison/verbe/acheter.html" class="wordcloud5">keufs</a>
-                          <a title="verlan meuf" href="/conjugaison/verbe/acheter.html" class="wordcloud6">meuf</a>
-                          <a title="verlan keum" href="/conjugaison/verbe/acheter.html" class="wordcloud7">keum</a>
-                          <a title="verlan cefran" href="/conjugaison/verbe/acheter.html" class="wordcloud8">cefran</a>
-                          <a title="verlan teuf" href="/conjugaison/verbe/acheter.html" class="wordcloud9">teuf</a>
-                          <a title="verlan cheum" href="/conjugaison/verbe/acheter.html" class="wordcloud10">cheum</a>
-                      </p>
-                  </div>
-              </div>
+    <div className="inverse-verlan">
+      <h2>Qu'est-ce que le verlan ?</h2>
+    </div>
+  );
+};
+
+// VerlansInfo Component
+const VerlansInfo = () => {
+  return (
+    <div className="verlans-info">
+      <Row>
+        <Col
+          style={{
+            padding: "20",
+            textAlign: "center",
+          }}
+        >
+          <img src="/verlan.gif" />
+        </Col>
+        <Col>
+          <div
+            className="search-card"
+            style={{ textAlign: "center", marginTop: "150px" }}
+          >
+            <p>Si vous voulez savoir plus sur les verlans, cliquer ici !</p>
+            <p>더 알고싶으면 여기를 클릭하세요.</p>
+            <button>
+              <a
+                href="/about"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                sur les verlans
+              </a>
+            </button>
           </div>
-      </Col>
-      <Col style={{ height: "100%" }}>
-        <div className="search-card">
-          <h4>단어</h4>
-        </div>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </div>
   );
-}
+};
+
+// MostFrequent Component
+const MostFrequent = () => {
+  return (
+    <div className="most-frequent">
+      <Row>
+        <Col
+          style={{
+            padding: "20",
+            textAlign: "center",
+          }}
+        >
+          <h3 style={{ marginTop: 150 }}>les plus frequents</h3>
+        </Col>
+        <Col>
+          <div className="search-card" style={{ height: 300 }}>
+            <p style={{ position: "relative" }}>
+              <a
+                title="verlan Cimer"
+                href="/search?keyword=cimer"
+                class="wordcloud1"
+              >
+                cimer
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan chelou"
+                href="/conjugaison/verbe/acheter.html"
+                class="wordcloud2"
+              >
+                chelou
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan ouf"
+                href="/search?keyword=ouf"
+                class="wordcloud3"
+              >
+                ouf
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan zarbi"
+                href="/search?keyword=zarbi"
+                class="wordcloud4"
+              >
+                zarbi
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan keufs"
+                href="/search?keyword=Keuf"
+                class="wordcloud5"
+              >
+                keufs
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan meuf"
+                href="/search?keyword=Meuf"
+                class="wordcloud6"
+              >
+                meuf
+              </a>
+            </p>
+            <p>
+              <a
+                title="verlan cefran"
+                href="/search?keyword=cefran"
+                class="wordcloud8"
+              >
+                cefran
+              </a>
+            </p>
+
+            <p>
+              <a
+                title="verlan cheum"
+                href="/search?keyword=cheum"
+                class="wordcloud10"
+              >
+                cheum
+              </a>
+            </p>
+          </div>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+// App Component
+const App = () => {
+  return (
+    <div className="app">
+      <Header />
+      <InverseVerlan />
+      <VerlansInfo />
+      <MostFrequent />
+    </div>
+  );
+};
+
+export default App;
