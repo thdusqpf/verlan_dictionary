@@ -1,10 +1,8 @@
 "use client";
-
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
-export default function SearchArea() {
+export default function SearchBar() {
   const [keyword, setKeyword] = useState("");
   return (
     <div className="search-box">
