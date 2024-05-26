@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import SearchBar from "../SearchBar";
 
 let result_text = {};
+let example_text = {};
 const Header = () => {
   return (
     <header>
@@ -73,64 +74,41 @@ export default async function Search(props) {
     .collection("dictionary")
     .findOne({ Verlan: lower_keyword }, { Verlan: 1, Original: 1, Example: 1 });
 
-
-    const AWS = require('aws-sdk');
-
-    // AWS 설정 및 AWS 서비스에 액세스하기 위한 자격 증명 설정
-    AWS.config.update({
-      region: 'YOUR_REGION', // Lambda 함수가 있는 AWS 리전
-      accessKeyId: 'YOUR_ACCESS_KEY_ID', // AWS 액세스 키 ID
-      secretAccessKey: 'YOUR_SECRET_ACCESS_KEY' // AWS 시크릿 액세스 키
-    });
-    
-    // Lambda 클라이언트 생성
-    const lambda = new AWS.Lambda();
-    
-    // Lambda 함수 호출
-    const params = {
-      FunctionName: 'YOUR_FUNCTION_NAME', // 호출할 Lambda 함수의 이름
-      InvocationType: 'RequestResponse', // 요청-응답 방식
-      Payload: JSON.stringify({ /* 전달할 이벤트 객체 */ })
-    };
-    
-    lambda.invoke(params, function(err, data) {
-      if (err) {
-        console.error('Error calling Lambda function:', err);
-      } else {
-        console.log('Lambda function response:', JSON.parse(data.Payload));
-      }
-    });
-    //curl -X GET https://2sp8js16m7.execute-api.ap-northeast-2.amazonaws.com/translate/translate
-
+  console.log("keyword:", keyword.Original);
 
   // keyword가 비어있지 않으면(db에 일치하는 단어가 존재하면)
   if (keyword != null) {
     const url =
-      "https://2sp8js16m7.execute-api.ap-northeast-2.amazonaws.com/translate/translate";
+      "https://n0t7a0ppp8.execute-api.ap-northeast-2.amazonaws.com/dev/translate_function/translate";
     const options = {
       method: "POST",
       headers: {
-        "content-type": "application/json; charset=utf-8",
-        //"X-RapidAPI-Key": process.env.X_RapidAPI_Key,
-        //"X-RapidAPI-Host": "deepl-translator.p.rapidapi.com",
+        "content-type": "application/json",
       },
-      /*body: JSON.stringify({
-        text: keyword.Original,
-        source: "FR",
-        target: "KO",
-      }),*/
+      body: JSON.stringify({ text: keyword.Original }),
+    };
+
+    const options2 = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ text: keyword.Example }),
     };
 
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result);
-      console.log(typeof result);
+      console.log("result:", result);
       result_text = result;
+
+      const response2 = await fetch(url, options2);
+      const result2 = await response2.json();
+      console.log("result2:", result2);
+      example_text = result2;
     } catch (error) {
       console.error(error);
     }
-    console.log("r", result_text);
   } else {
     if (props.searchParams.keyword.length >= 1) {
       let distances = [];
@@ -225,16 +203,12 @@ export default async function Search(props) {
             }}
           >
             <h2 style={{ marginTop: "60px" }}>Definition</h2>
-            {result_text.alternative_texts &&
-              result_text.alternative_texts.map((a, i) => (
-                <p key={i}>
-                  Korean {i + 1}: {a}
-                </p>
-              ))}
+            <p>Korean: {result_text}</p>
           </Col>
           <Col>
             <h2 style={{ marginTop: 30 }}>예문</h2>
             {keyword && <p>{keyword.Example}</p>}
+            <p>{example_text}</p>
           </Col>
         </Row>
       </div>
