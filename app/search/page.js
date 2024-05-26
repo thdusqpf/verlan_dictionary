@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar";
 
 let result_text = {};
 let example_text = {};
+
 const Header = () => {
   return (
     <header>
@@ -53,19 +54,8 @@ export default async function Search(props) {
     return matrix[len1][len2];
   }
 
-  //검색어의 악센트 제거 코드
-  function removeAccents(str) {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
-  //const input = "Café";
-  //const output = removeAccents(input);
-  //console.log("output:", output); // 출력: Cafe, resume, facade, naive, Sao Paulo
-
-  // 검색어 입력 받기
-
-  const search_keyword = removeAccents(props.searchParams.keyword);
-  console.log("search keyword:", search_keyword);
-  const lower_keyword = search_keyword.toLowerCase();
+  //검색어 소문자로 변환
+  const lower_keyword = props.searchParams.keyword.toLowerCase();
   console.log("lower:", lower_keyword);
 
   //db에서 검색어와 일치하는 데이터 가져오기
@@ -73,8 +63,6 @@ export default async function Search(props) {
   let keyword = await db
     .collection("dictionary")
     .findOne({ Verlan: lower_keyword }, { Verlan: 1, Original: 1, Example: 1 });
-
-  console.log("keyword:", keyword.Original);
 
   // keyword가 비어있지 않으면(db에 일치하는 단어가 존재하면)
   if (keyword != null) {
