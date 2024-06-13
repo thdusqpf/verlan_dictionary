@@ -1,3 +1,8 @@
+# Verlan Dictionary
+## 대상
+- 좀 더 프랑스인처럼 자연스럽게 말하고 싶은 사람
+- verlan의 뜻이 궁금한 사람
+  
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
